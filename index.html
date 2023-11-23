@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Fuddlify</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="card m-2" id="card-first">
+    <div class="card-body">
+      <p class="m-1 mb-0">First Step</p>
+      <p class="m-1 my-0 text-secondary"><small>Define the variables</small></p><br>
+      <p>Enter your secret values, and we'll make them secure. If you use the secret again, re-enter it because it will be removed after its usage. <span class="text-secondary link" onclick="openHelp(0)">Learn More</span></p>
+      <div id="inputs">
+        <div class="d-flex gap-3 align-items-center my-1">
+          <p class="m-0">1</p>
+          <input type="text" class="form-control" placeholder="Variable" data-input="0">
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-outline-secondary mt-1 py-1 hidden" onclick="add()" id="btn-add"><small>Add another variable</small></button>
+      </div><br>
+      <div class="d-flex gap-1">
+        <button class="btn btn-primary" onclick="toSecond()">Next Step</button>
+        <button class="btn btn-secondary" onclick="reset()">Reset</button>
+      </div>
+    </div>
+  </div>
+  <div class="card m-2 hidden" id="card-second">
+    <div class="card-body">
+      <p class="m-1 mb-0">Second Step</p>
+      <p class="m-1 my-0 text-secondary"><small>Apply the mechanism</small></p><br>
+      <p>Copy these codes and paste it to your script that contains those secrets.</p>
+      <small class="text-secondary ms-1 link" onclick="openHelp(1)">Learn more about datakeys</small>
+      <textarea id="datakeys" rows="5" class="mono w-100 form-control my-2" placeholder="Datakeys"></textarea>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-outline-secondary mt-1" onclick="toSecond()"><small>Regenerate</small></button>
+      </div><br>
+      <small class="text-secondary ms-1 link" onclick="openHelp(2)">Learn more about source code</small>
+      <textarea id="source" rows="10" class="mono w-100 form-control my-2" placeholder="Source Code"></textarea>
+      <div class="d-flex gap-1">
+        <button class="btn btn-primary" onclick="toThird()">Next Step</button>
+        <button class="btn btn-secondary" onclick="backFirst()">Back</button>
+      </div>
+    </div>
+  </div>
+  <div class="card m-2 hidden" id="card-third">
+    <div class="card-body">
+      <p class="m-1 mb-0">Third Step</p>
+      <p class="m-1 my-0 text-secondary"><small>Apply the secrets</small></p><br>
+      <p>Now, replace the secret with the function <span class="mono bg-light rounded p-1 px-2">Fud();</span> based on its index.</p>
+      <p>For instance, I created two variables: a <span class="mono bg-light rounded p-1 px-2">username</span> and a <span class="mono bg-light rounded p-1 px-2">password</span>. The username comes first, and the password is the second one. To get the username, I use <span class="mono bg-light rounded p-1 px-2">Fud()</span>; to get the password, I use <span class="mono bg-light rounded p-1 px-2">Fud()</span> again. But if I want the password first, I have to grab the username before.</p><br>
+      <div class="mono bg-light rounded p-1 px-2">
+        <span class="comment mono">// Fuddlify source code and datakeys...</span><br><br>
+        <span class="comment mono">// This will retrieve the first variable</span><br>
+        <span class="token mono">var</span> username = Fud();<br><br>
+        <span class="comment mono">// This will retrieve the second variable</span><br>
+        <span class="token mono">var</span> password = Fud();
+      </div><br>
+      <div class="d-flex gap-1">
+        <button class="btn btn-primary" onclick="backFirst(1)">Back To First</button>
+      </div>
+    </div>
+  </div>
+  <div class="card m-2 hidden" id="help">
+    <div class="card-body">
+      <p id="title"></p>
+      <p id="subtitle" class="text-secondary"></p>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-primary" onclick="closeHelp()">Hide</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="index.js"></script>
+</html>

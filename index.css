@@ -1,0 +1,28 @@
+* {
+  font-family: "Inter";
+  user-select: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.mono {
+  font-family: "JetBrains Mono";
+}
+
+.comment {
+  color: #135F00;
+}
+
+.token {
+  color: #8300FF;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
